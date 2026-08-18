@@ -1,8 +1,29 @@
 services:
   nginx:
     image: nginx
-    container_name: nginx-docker
     ports:
       - "8080:80"
     volumes:
       - ./website:/usr/share/nginx/html:ro
+
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    image: mansur-app
+    environment:
+      DB_HOST: postgres
+      DB_NAME: ${POSTGRES_DB}
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5000:5000"
+
+volumes:
+  postgres_data:
