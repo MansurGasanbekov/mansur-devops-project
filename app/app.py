@@ -19,8 +19,7 @@ def index():
 
     cur.close()
     conn.close()
-
-    return "<h1>Mansur DevOps Project</h1><p>Users:</p><ul>" + \
+    return "<h1>MAIN VERSION</h1><p>Users:</p><ul>" + \
            "".join(f"<li>{user[0]}</li>" for user in users) + \
            "</ul>"
 
