@@ -11,9 +11,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'echo "Checking Docker..."'
-                sh 'docker --version'
-                sh 'docker ps'
+                sh 'docker build -t mansur-app:${BUILD_NUMBER} app'
             }
         }
 
