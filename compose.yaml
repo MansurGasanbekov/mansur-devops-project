@@ -2,7 +2,7 @@ services:
   nginx:
     image: nginx
     ports:
-      - "8080:80"
+      - "8082:80"
     volumes:
       - ./website:/usr/share/nginx/html:ro
 
