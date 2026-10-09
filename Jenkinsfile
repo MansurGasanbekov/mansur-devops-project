@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -11,14 +12,16 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'docker build -t mansur-app:${BUILD_NUMBER} app'
+                sh 'docker build -t mansur-app:${BUILD_NUMBER} -t mansur-app:latest app'
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploying to staging...'
+                sh 'docker compose --project-directory /home/mansur/devops_project -f /home/mansur/devops_project/compose.yaml up -d --no-deps --force-recreate app'
             }
         }
     }
 }
+
+
